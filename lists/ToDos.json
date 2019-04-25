@@ -1,0 +1,14 @@
+[
+  {
+    "text": "The first item in this list",
+    "author": "User1",
+    "date_created": "2018-10-15 13:14:15",
+    "date_completed": "2018-11-15 09:15:35"
+  },
+  {
+    "text": "The second item in this list",
+    "author": "User2",
+    "date_created": "2019-03-15 13:14:15",
+    "date_completed": ""
+  }
+]
