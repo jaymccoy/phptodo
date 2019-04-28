@@ -1,0 +1,17 @@
+body {
+    color: grey;
+    background-color: #555555;
+}
+
+.btn-group{
+    background-color: #777777;
+    width: 100%;
+}
+
+.dropdown-item {
+    background-color: #999999;
+}
+
+.dropdown-menu {
+    background-color: #999999;
+}

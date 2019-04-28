@@ -8,10 +8,10 @@
 ?>
 
     <div class="btn-group">
-        <button type="button" class="btn btn-primary">About</button>
-        <button type="button" class="btn btn-primary">Settings</button>
+        <button type="button" class="btn btn-default disabled">About</button>
+        <button type="button" class="btn btn-default disabled">Settings</button>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 Lists
             </button>
             <div class="dropdown-menu">
@@ -43,19 +43,20 @@
 
     <div id="accordion">
 <?php
+    //TODO: fix error when no list is selected yet
     if ('' !== $selected_list) {
         $item_list = json_decode(file_get_contents("./lists/$selected_list.json"));
         foreach ($item_list as $key => $item) {
             ?>
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" data-toggle="collapse" href="#collapse<?php echo $key; ?>">
                     <a class="collapsed card-link" data-toggle="collapse" href="#collapse<?php echo $key; ?>">
                         <?php echo $item->text; ?>
                     </a>
                 </div>
                 <div id="collapse<?php echo $key; ?>" class="collapse" data-parent="#accordion">
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Created by <i><?php echo $item->author; ?></i> on <i><?php echo $item->date_created; ?></i>.
                     </div>
                 </div>
             </div>
@@ -67,16 +68,11 @@
 
 
         <div class="card">
-            <div class="card-header">
-                <a class="card-link" data-toggle="collapse" href="#collapseAdd">
-                    Add new item
-                </a>
-            </div>
-            <div id="collapseAdd" class="collapse" data-parent="#accordion">
+            <div id="collapseAdd" class="" data-parent="#accordion">
                 <div class="card-body">
                     <form class="form-inline" name="add_list_item">
                         <input type="hidden" name="list" value="<?php echo $selected_list; ?>">
-                        <label for="email2" class="mb-2 mr-sm-2">Item:</label>
+                        <label for="item_text" class="mb-2 mr-sm-2">Add new item:</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" id="item_text" placeholder="Enter list item" name="item_text">
                         <button type="submit" class="btn btn-primary mb-2">Add</button>
                     </form>
